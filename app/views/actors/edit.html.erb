@@ -1,0 +1,12 @@
+<p><%= link_to "All Actors", actors_path %> | <%= link_to "All Movies", movies_path %></p>
+
+<h2>Edit Actor</h2>
+
+<%= form_for @actor do |f| %>
+<p><%= f.label :name, "Name" %>
+<%= f.text_field :name %></p>
+
+<p><%= f.label :movie, "Movie:" %>
+<%= f.collection_select :movies, Movie.all, :id, :title, prompt: true %></p>
+<%= f.submit "Update" %>
+<% end %>

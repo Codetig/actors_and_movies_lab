@@ -1,0 +1,6 @@
+<h2> New Actor</h2>
+
+<%= form_for @actor do |f| %>
+<p><%= f.label :name, "Actor Name:" %>
+<%= f.text_field :name %> <%= f.submit "Add Actor" %> </p>
+<% end %>

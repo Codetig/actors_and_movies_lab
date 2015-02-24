@@ -1,0 +1,18 @@
+<h2>All Actors</h2>
+<% show_movies = false %>
+<table class="table">
+<tr>
+  <th>Name</th>
+  <th>Details</th>
+  <th>Movies</th>
+</tr>
+<% @actors.each do |actor| %>
+<tr>
+  <td><%= actor.name %></td>
+  <td><%= link_to "see more", actor %></td>
+  <td><%= link_to "list", "#", :class => "listmovie" %></td>
+</tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Add Actor", new_actor_path %> | <%= link_to "All Movies", movies_path %></p>

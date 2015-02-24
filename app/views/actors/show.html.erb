@@ -1,0 +1,17 @@
+<p><%= link_to "All Actors", actors_path %> | <%= link_to "All Movies", movies_path %></p>
+
+<h2>Actor</h2>
+
+<h4><%= @actor.name %> <br><small><%= link_to "Edit", edit_actor_path %></small></h4>
+
+<ul>
+<% if @movies.length > 0 %>
+<p>Starred in ...</p>
+<% @movies.each do |movie| %>
+ <li><%= movie.title %> <small>-<%= movie.year %></small>  <%= button_to "Delete", "/actors/#{@actor.id}/movies/#{movie.id}", :method => :delete %></li>
+<% end %>
+<% else %>
+<p>Curently has no movies in the database.</p>
+<% end %>
+</ul>
+
