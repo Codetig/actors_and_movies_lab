@@ -1,3 +1,13 @@
+<% if session[:user_id] %>
+<p><%= link_to "Logout", logout_path %></p>
+<% else %>
+<p><%= link_to "Login", login_path %> | <%= link_to "SignUp", signup_path %></p>
+<% end %>
+
+<% flash.each do |key, notice| %>
+<p><%= notice %></p>
+<% end %>
+
 <h1>Actors and Movies</h1>
 
 <p>

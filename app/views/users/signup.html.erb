@@ -1,0 +1,30 @@
+
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |error| %>
+  <p class="text-danger">
+      <%= error %>
+  </p>
+  <% end %>
+  <% end %>
+
+<div class="container-fluid">
+<h1>Users signup</h1>
+<p>Please sign up below:</p>
+
+<% flash.each do |key, notice| %>
+<p><%= notice %></p>
+<% end %>
+
+<%= simple_form_for(@user, url: signup_path) do |f|%>
+  <p>
+    <%= f.input(:username, autofocus: true) %>
+  </p>
+  <p>
+    <%= f.input(:password, required: true) %>
+  </p>
+  <p>
+    <%= f.button(:submit, "Signup", class: "btn btn-primary") %>
+  </p>
+<% end %>
+<p>Already signed up? Please <%= link_to "login", signup_path %></p>
+</div>

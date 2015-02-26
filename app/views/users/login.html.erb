@@ -1,0 +1,32 @@
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |error| %>
+  <p class="text-danger">
+      <%= error %>
+  </p>
+  <% end %>
+  <% end %>
+
+
+<div class="container-fluid">
+<h1>Users Login</h1>
+<p>Please login below:</p>
+
+<% flash.each do |key, notice| %>
+<p><%= notice %></p>
+<% end %>
+
+<%= form_tag(login_path) do %>
+
+  <%= label_tag(:username)%>
+  <%= text_field_tag(:username, params[:username], autofocus: true)%>
+
+
+  <%= label_tag(:password)%>
+  <%= password_field_tag(:password)%>
+
+  <%= submit_tag("Log in", class: "btn btn-primary") %>
+
+<% end %>
+
+<p>Not a member, <%= link_to "signup", signup_path %></p>
+</div>

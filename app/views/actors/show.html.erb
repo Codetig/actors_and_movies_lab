@@ -1,3 +1,10 @@
+<% if session[:user_id] %>
+<p><%= link_to "Logout", logout_path %></p>
+<% else %>
+<p><%= link_to "Login", login_path %> | <%= link_to "SignUp", signup_path %></p>
+<% end %>
+
+<div class="container-fluid">
 <h1><%= @actor.name %></h1>
 
 <div class="black-box">
@@ -23,3 +30,25 @@
 <br><br>
 
 <%= link_to "Back to actors", actors_path %>
+
+<div>
+  <h3>Comment Section</h3>
+<% flash.each do |key, notice|  %>
+<p><%= notice %></p>
+<% end %>
+  <% @comments.reverse.each do |comment| %>
+  <li><%= comment.comment_text %> <p>written <%= time_ago_in_words comment.created_at %> ago</li>
+  <% end %>
+
+
+<% if session[:user_id] %>
+  <%= simple_form_for [@actor, Comment.new] do |f| %>
+    <div class="form-group">
+    <%= f.input :comment_text, label: false %>
+    <%= f.button :submit, "Add Comment"  %></div>
+    <% end %>
+    <% else %>
+    <p><%= link_to "Log in", login_path %> to add comment.</p>
+    <% end %>
+</div>
+</div>
