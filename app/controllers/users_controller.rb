@@ -30,16 +30,21 @@ class UsersController < ApplicationController
   def attempt_login
     session[:user_id] = []
     if params[:username].present? && params[:password].present?
-    found_user = User.find_by username: user_param[:username]
+    found_user = User.find_by username: params[:username]
       if found_user
         @user = found_user.authenticate(params[:password])
         flash[:notice] = "Welome #{@user.username}"
         session[:user_id] << @user.id
       redirect_to '/'
+
+      else
+        session[:user_id] = nil
+        render :login
       end
+    else
+      session[:user_id] = nil
+      render :login
     end
-    session[:user_id] = nil
-    render :login
   end
 
   private

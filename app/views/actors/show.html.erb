@@ -37,7 +37,7 @@
 <p><%= notice %></p>
 <% end %>
   <% @comments.reverse.each do |comment| %>
-  <li><%= comment.comment_text %> <p>written <%= time_ago_in_words comment.created_at %> ago</li>
+  <li><%= comment.comment_text %> <p><%="By" + User.find(session[:user_id])[0].username if session[:user_id] %> written <%= time_ago_in_words comment.created_at %> ago</li>
   <% end %>
 
 

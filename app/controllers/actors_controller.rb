@@ -21,6 +21,7 @@ class ActorsController < ApplicationController
   def show
     @movies = Movie.all - @actor.movies
     @comments = @actor.comments
+    # @user = User.find session[:user_id]
   end
 
   def update
